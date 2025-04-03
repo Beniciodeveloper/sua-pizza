@@ -1,7 +1,7 @@
 
-import type { PizzaFlavor } from '../data/pizzaFlavors';
-import { pizzaPrices } from '../data/pizzaPrices';
-import type { PizzaBorder } from '../data/pizzaBorders';
+import type { PizzaFlavor } from '../data/pizzaOptions';
+import { pizzaPrices } from '../data/pizzaOptions';
+import type { PizzaBorder } from '../data/pizzaOptions';
 
 /**
  * Calcula o preço de uma pizza com base no tamanho e sabores selecionados
@@ -30,10 +30,20 @@ export const calculatePizzaPrice = (
 
   if (!priceObj) return 0;
 
-  // Para pizzas pequenas, verifica se precisa aplicar o preço de múltiplos sabores
-  const basePrice = (sizeId === 'small' && flavors.length > 1) 
-    ? (priceObj.multiFlavorPrice || priceObj.price)
-    : priceObj.price;
+  // Para pizzas pequenas com sabores diferentes, aplica o preço de múltiplos sabores
+  // apenas se os sabores forem de categorias diferentes
+  let basePrice = priceObj.price;
+  
+  // Verifica se é pizza pequena e tem múltiplos sabores
+  if (sizeId === 'small' && flavors.length > 1) {
+    // Verifica se os sabores são de categorias diferentes
+    const uniqueCategories = new Set(categories);
+    if (uniqueCategories.size > 1) {
+      // Se tiver categorias diferentes, usa o preço para múltiplos sabores
+      basePrice = priceObj.multiFlavorPrice || priceObj.price;
+    }
+    // Se todos os sabores forem da mesma categoria, mantém o preço padrão (já definido acima)
+  }
 
   // Adiciona o preço da borda, se selecionada
   if (borderOption) {
