@@ -72,13 +72,20 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   };
 
   const decreaseQuantity = (id: number) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
+    setCart((prevCart) => {
+      const item = prevCart.find((item) => item.id === id);
+      
+      if (item && item.quantity === 1) {
+        toast.info(`${item.name} removido do carrinho`);
+        return prevCart.filter((item) => item.id !== id);
+      }
+      
+      return prevCart.map((item) =>
         item.id === id && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
-      )
-    );
+      );
+    });
   };
 
   const clearCart = () => {

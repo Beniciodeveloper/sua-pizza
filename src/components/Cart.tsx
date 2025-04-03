@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { ShoppingBag, X, ArrowRight } from 'lucide-react';
 import CartItem from './CartItem';
 import { useCart } from '../contexts/CartContext';
@@ -86,7 +86,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
               onClick={onClose}
               className="w-full bg-pizza-primary hover:bg-pizza-secondary text-white py-3 rounded-lg flex items-center justify-center transition-colors"
             >
-              Finalizar Pedido
+              Avançar para Checkout
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>

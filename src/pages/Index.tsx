@@ -7,6 +7,7 @@ import { categories, products } from "../data/products";
 import ScrollReveal from "../components/ScrollReveal";
 import { useCart } from "../contexts/CartContext";
 import { ShoppingBag } from "lucide-react";
+import PizzaBuilder from "../components/PizzaBuilder";
 
 const Index = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -27,16 +28,16 @@ const Index = () => {
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Pizzas artesanais, sabor inesquecível!
+                Monte sua pizza do jeito que desejar!
               </h1>
               <p className="text-lg opacity-90 mb-8">
-                Experimente nossas deliciosas pizzas preparadas com ingredientes frescos e de alta qualidade.
+                Experimente nossas deliciosas pizzas customizadas com ingredientes frescos e de alta qualidade.
               </p>
               <button 
                 onClick={() => window.scrollTo({ top: 500, behavior: "smooth" })}
                 className="bg-white text-pizza-primary px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition-all transform hover:scale-105"
               >
-                Ver Cardápio
+                Montar Pizza
               </button>
             </div>
           </ScrollReveal>
@@ -67,30 +68,36 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Products Grid */}
+      {/* Products Section */}
       <section className="py-12 px-4">
         <div className="container mx-auto">
-          <ScrollReveal>
-            <h2 className="text-2xl font-bold mb-8 text-center text-pizza-dark">
-              {categories.find(c => c.id === activeCategory)?.name || "Produtos"}
-            </h2>
-          </ScrollReveal>
+          {activeCategory === "montar" ? (
+            <PizzaBuilder />
+          ) : (
+            <>
+              <ScrollReveal>
+                <h2 className="text-2xl font-bold mb-8 text-center text-pizza-dark">
+                  {categories.find(c => c.id === activeCategory)?.name || "Produtos"}
+                </h2>
+              </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredProducts.map((product, index) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onAddToCart={addToCart}
-                index={index}
-              />
-            ))}
-          </div>
-          
-          {filteredProducts.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-500">Nenhum produto disponível nesta categoria.</p>
-            </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredProducts.map((product, index) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    onAddToCart={addToCart}
+                    index={index}
+                  />
+                ))}
+              </div>
+              
+              {filteredProducts.length === 0 && (
+                <div className="text-center py-12">
+                  <p className="text-gray-500">Nenhum produto disponível nesta categoria.</p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>
