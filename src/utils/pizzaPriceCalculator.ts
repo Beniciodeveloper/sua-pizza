@@ -1,7 +1,7 @@
 
-import { PizzaFlavor } from '../data/pizzaFlavors';
+import type { PizzaFlavor } from '../data/pizzaFlavors';
 import { pizzaPrices } from '../data/pizzaPrices';
-import { PizzaBorder } from '../data/pizzaBorders';
+import type { PizzaBorder } from '../data/pizzaBorders';
 
 /**
  * Calcula o preço de uma pizza com base no tamanho e sabores selecionados

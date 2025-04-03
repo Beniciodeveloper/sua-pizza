@@ -1,19 +1,26 @@
 
 // Arquivo central para exportar todos os módulos relacionados a pizza
-import { PizzaSize, pizzaSizes } from './pizzaSizes';
-import { PizzaCategory, flavorCategories } from './pizzaCategories';
-import { PizzaFlavor, pizzaFlavors } from './pizzaFlavors';
-import { PizzaBorder, pizzaBorders } from './pizzaBorders';
-import { PizzaPrice, pizzaPrices } from './pizzaPrices';
+import { pizzaSizes } from './pizzaSizes';
+import { flavorCategories } from './pizzaCategories'; 
+import { pizzaFlavors } from './pizzaFlavors';
+import { pizzaBorders } from './pizzaBorders';
+import { pizzaPrices } from './pizzaPrices';
 
-// Re-exporta todos os tipos e dados
-export {
-  PizzaSize, pizzaSizes,
-  PizzaCategory, flavorCategories,
-  PizzaFlavor, pizzaFlavors,
-  PizzaBorder, pizzaBorders,
-  PizzaPrice, pizzaPrices,
+// Re-exporta todos os dados
+export { 
+  pizzaSizes,
+  flavorCategories,
+  pizzaFlavors,
+  pizzaBorders,
+  pizzaPrices,
 };
+
+// Re-exporta todos os tipos (usando export type para isolatedModules)
+export type { PizzaSize } from './pizzaSizes';
+export type { PizzaCategory } from './pizzaCategories';
+export type { PizzaFlavor } from './pizzaFlavors';
+export type { PizzaBorder } from './pizzaBorders';
+export type { PizzaPrice } from './pizzaPrices';
 
 // Também exporta interfaces adicionais que eram usadas no arquivo original
 export interface PizzaCombo {

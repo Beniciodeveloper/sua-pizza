@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { pizzaSizes, pizzaFlavors, flavorCategories } from '../data/pizzaOptions';
+import type { PizzaSize, PizzaFlavor } from '../data/pizzaOptions';
 import { useCart } from '../contexts/CartContext';
 import { toast } from 'sonner';
 import { Check, Info, PlusCircle } from 'lucide-react';
