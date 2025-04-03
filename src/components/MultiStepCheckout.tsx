@@ -152,8 +152,8 @@ const MultiStepCheckout: React.FC = () => {
     // Codificando a mensagem para URL
     const encodedMessage = encodeURIComponent(message);
     
-    // Número de WhatsApp (substitua pelo número correto)
-    const phoneNumber = '5511999999999';
+    // Número de WhatsApp atualizado
+    const phoneNumber = '5571991017313';
     
     // URL para o WhatsApp
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;

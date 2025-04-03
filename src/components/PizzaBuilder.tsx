@@ -149,12 +149,12 @@ const PizzaBuilder = () => {
             </h3>
 
             <Tabs defaultValue="tradicional" className="w-full">
-              <TabsList className="w-full mb-4 bg-gray-100">
+              <TabsList className="w-full mb-4 bg-gray-100 flex overflow-x-auto">
                 {flavorCategories.map((category) => (
                   <TabsTrigger
                     key={category.id}
                     value={category.id}
-                    className="flex-1"
+                    className="flex-shrink-0"
                   >
                     {category.name}
                   </TabsTrigger>
@@ -173,22 +173,13 @@ const PizzaBuilder = () => {
                         return (
                           <div
                             key={flavor.id}
-                            className={`relative rounded-lg overflow-hidden border transition-all ${
+                            className={`relative rounded-lg overflow-hidden border p-3 transition-all ${
                               isSelected
                                 ? "border-pizza-primary"
                                 : "border-gray-200 hover:border-pizza-primary/50"
                             }`}
                           >
-                            <img
-                              src={flavor.image}
-                              alt={flavor.name}
-                              className="w-full h-32 object-cover"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.src = "/placeholder.svg";
-                              }}
-                            />
-                            <div className="p-3">
+                            <div>
                               <h4 className="font-bold">{flavor.name}</h4>
                               <p className="text-gray-600 text-sm line-clamp-2">
                                 {flavor.description}

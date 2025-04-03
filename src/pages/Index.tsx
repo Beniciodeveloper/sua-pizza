@@ -7,6 +7,7 @@ import ScrollReveal from "../components/ScrollReveal";
 import { useCart } from "../contexts/CartContext";
 import { ShoppingBag } from "lucide-react";
 import PizzaBuilder from "../components/PizzaBuilder";
+import FloatingCartButton from "../components/FloatingCartButton";
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<string>(categories[0].id);
@@ -126,6 +127,9 @@ const Index = () => {
           </div>
         </div>
       </footer>
+      
+      {/* Floating Cart Button */}
+      <FloatingCartButton />
     </div>
   );
 };

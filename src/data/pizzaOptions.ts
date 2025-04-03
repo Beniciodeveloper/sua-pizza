@@ -1,4 +1,3 @@
-
 export interface PizzaSize {
   id: string;
   name: string;
@@ -77,23 +76,19 @@ export const pizzaSizes: PizzaSize[] = [
 export const flavorCategories: PizzaCategory[] = [
   {
     id: "tradicional",
-    name: "Tradicionais",
-    description: "Sabores clássicos que todo mundo adora"
-  },
-  {
-    id: "tradicional-doce",
-    name: "Tradicionais Doces",
-    description: "Sabores doces para adoçar seu dia"
+    name: "TRADICIONAIS"
   },
   {
     id: "especial",
-    name: "Especiais",
-    description: "Combinações especiais para paladares exigentes"
+    name: "ESPECIAIS"
   },
   {
     id: "premium",
-    name: "Premium",
-    description: "O melhor da casa, com ingredientes selecionados"
+    name: "PREMIUM"
+  },
+  {
+    id: "doce",
+    name: "DOCES"
   }
 ];
 
