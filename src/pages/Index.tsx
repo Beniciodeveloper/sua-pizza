@@ -7,7 +7,7 @@ import ScrollReveal from "../components/ScrollReveal";
 import { useCart } from "../contexts/CartContext";
 import PizzaBuilder from "../components/PizzaBuilder";
 import FloatingCartButton from "../components/FloatingCartButton";
-import { Facebook, Instagram, WhatsApp } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<string>(categories[0].id);
@@ -135,7 +135,21 @@ const Index = () => {
                 rel="noopener noreferrer" 
                 className="opacity-80 hover:opacity-100 transition-opacity"
               >
-                <WhatsApp className="h-6 w-6" />
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-6 w-6" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 21l1.65-3.8a9 9 0 113.4 2.9L3 21" />
+                  <path d="M9 10a.5.5 0 001 0V9a.5.5 0 00-1 0v1z" />
+                  <path d="M13 10a.5.5 0 001 0V9a.5.5 0 00-1 0v1z" />
+                  <path d="M9 14a5 5 0 006 0" />
+                </svg>
               </a>
             </div>
             <p className="mt-8 text-sm opacity-60">

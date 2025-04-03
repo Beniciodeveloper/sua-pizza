@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { pizzaSizes, pizzaFlavors, flavorCategories, calculatePizzaPrice, PizzaFlavor, PizzaSize } from '../data/pizzaOptions';
 import { useCart } from '../contexts/CartContext';
@@ -35,10 +36,10 @@ const PizzaBuilder = () => {
     
     // Find the flavor with the highest price
     const highestPriceFlavor = flavors.reduce((prev, current) => 
-      (current.price > prev.price) ? current : prev
+      (current.priceMultiplier > prev.priceMultiplier) ? current : prev
     );
     
-    return highestPriceFlavor.price;
+    return highestPriceFlavor.priceMultiplier * (customPizza.size?.basePrice || 0);
   };
 
   const handleAddFlavor = (flavor: PizzaFlavor) => {
