@@ -5,16 +5,9 @@ import ProductCard from "../components/ProductCard";
 import { categories, products } from "../data/products";
 import ScrollReveal from "../components/ScrollReveal";
 import { useCart } from "../contexts/CartContext";
-import { ShoppingBag } from "lucide-react";
 import PizzaBuilder from "../components/PizzaBuilder";
 import FloatingCartButton from "../components/FloatingCartButton";
-import { 
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../components/ui/carousel";
+import { Facebook, Instagram, WhatsApp } from "lucide-react";
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<string>(categories[0].id);
@@ -88,30 +81,15 @@ const Index = () => {
               </ScrollReveal>
 
               {filteredProducts.length > 0 && (
-                <div className="relative px-4 md:px-8 lg:px-12">
-                  <Carousel
-                    opts={{
-                      align: "start",
-                      loop: filteredProducts.length > 3,
-                    }}
-                    className="w-full"
-                  >
-                    <CarouselContent className="-ml-2 md:-ml-4">
-                      {filteredProducts.map((product, index) => (
-                        <CarouselItem key={product.id} className="pl-2 md:pl-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                          <ProductCard
-                            product={product}
-                            index={index}
-                            onAddToCart={addToCart}
-                          />
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <div className="hidden md:block">
-                      <CarouselPrevious className="-left-12" />
-                      <CarouselNext className="-right-12" />
-                    </div>
-                  </Carousel>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {filteredProducts.map((product, index) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      index={index}
+                      onAddToCart={addToCart}
+                    />
+                  ))}
                 </div>
               )}
               
@@ -134,15 +112,30 @@ const Index = () => {
               <span className="text-pizza-secondary">Pizza</span>Express
             </h3>
             <p className="opacity-80 mb-4">Pizzas artesanais com ingredientes premium</p>
-            <div className="flex justify-center space-x-4">
-              <a href="#" className="opacity-80 hover:opacity-100 transition-opacity">
-                Instagram
+            <div className="flex justify-center space-x-6">
+              <a 
+                href="https://www.instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="opacity-80 hover:opacity-100 transition-opacity"
+              >
+                <Instagram className="h-6 w-6" />
               </a>
-              <a href="#" className="opacity-80 hover:opacity-100 transition-opacity">
-                Facebook
+              <a 
+                href="https://www.facebook.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="opacity-80 hover:opacity-100 transition-opacity"
+              >
+                <Facebook className="h-6 w-6" />
               </a>
-              <a href="#" className="opacity-80 hover:opacity-100 transition-opacity">
-                WhatsApp
+              <a 
+                href="https://wa.me/5571991017313" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="opacity-80 hover:opacity-100 transition-opacity"
+              >
+                <WhatsApp className="h-6 w-6" />
               </a>
             </div>
             <p className="mt-8 text-sm opacity-60">

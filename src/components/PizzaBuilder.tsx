@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { pizzaSizes, pizzaFlavors, flavorCategories, calculatePizzaPrice, PizzaFlavor, PizzaSize } from '../data/pizzaOptions';
 import { useCart } from '../contexts/CartContext';
@@ -31,6 +30,17 @@ const PizzaBuilder = () => {
     });
   };
 
+  const calculateHighestPrice = (size: string, flavors: PizzaFlavor[]): number => {
+    if (flavors.length === 0) return 0;
+    
+    // Find the flavor with the highest price
+    const highestPriceFlavor = flavors.reduce((prev, current) => 
+      (current.price > prev.price) ? current : prev
+    );
+    
+    return highestPriceFlavor.price;
+  };
+
   const handleAddFlavor = (flavor: PizzaFlavor) => {
     if (!customPizza.size) {
       toast.error("Por favor, escolha um tamanho primeiro");
@@ -48,7 +58,7 @@ const PizzaBuilder = () => {
     }
 
     const updatedFlavors = [...customPizza.flavors, flavor];
-    const newPrice = calculatePizzaPrice(
+    const newPrice = calculateHighestPrice(
       customPizza.size.id,
       updatedFlavors
     );
@@ -67,7 +77,7 @@ const PizzaBuilder = () => {
     
     if (!customPizza.size) return;
 
-    const newPrice = calculatePizzaPrice(
+    const newPrice = calculateHighestPrice(
       customPizza.size.id,
       updatedFlavors
     );
@@ -91,11 +101,11 @@ const PizzaBuilder = () => {
       name: `Pizza ${customPizza.size.diameter} - ${flavorNames}`,
       description: `${customPizza.flavors.length} sabor(es): ${flavorNames}. ${customPizza.size.slices} fatias.`,
       price: customPizza.price,
-      image: customPizza.flavors[0]?.image || '/placeholder.svg',
+      image: `/pizza-${customPizza.size.id}.jpg`, // Use the pizza size image
       category: 'montar' as const,
     };
 
-    addToCart(customPizzaProduct);
+    addToCart(customPizzaProduct, customPizza.size.id as 'small' | 'medium' | 'large');
     toast.success("Pizza adicionada ao carrinho");
     
     // Reset pizza builder
