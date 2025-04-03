@@ -1,3 +1,4 @@
+
 export interface PizzaSize {
   id: string;
   name: string;
@@ -10,7 +11,7 @@ export interface PizzaSize {
 export interface PizzaCategory {
   id: string;
   name: string;
-  description: string;
+  description?: string; // Making this optional with the '?' operator
 }
 
 export interface PizzaFlavor {
