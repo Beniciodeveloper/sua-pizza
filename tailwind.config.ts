@@ -26,11 +26,11 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				pizza: {
-					primary: '#D32F2F', // Vermelho principal
-					secondary: '#E64A19', // Laranja
-					accent: '#FFA000', // Amarelo escuro
-					light: '#FFECB3', // Amarelo claro
-					dark: '#4E342E', // Marrom escuro
+					primary: '#F97316', // Orange primary (changed from red)
+					secondary: '#FB923C', // Light orange (changed from dark red)
+					accent: '#FFA000', // Amber - staying the same
+					light: '#FFECB3', // Light yellow - staying the same
+					dark: '#4E342E', // Brown - staying the same
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',

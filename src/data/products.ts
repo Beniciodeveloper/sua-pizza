@@ -1,10 +1,11 @@
+
 export interface Product {
   id: number;
   name: string;
   description: string;
   price: number;
   image: string;
-  category: 'bebida' | 'sobremesa' | 'montar';
+  category: 'bebida' | 'sobremesa' | 'montar' | 'combo';
 }
 
 export interface Category {
@@ -20,6 +21,11 @@ export const categories: Category[] = [
     icon: "🍕",
   },
   {
+    id: "combo",
+    name: "Combos",
+    icon: "🔥",
+  },
+  {
     id: "bebida",
     name: "Bebidas",
     icon: "🥤",
@@ -32,6 +38,33 @@ export const categories: Category[] = [
 ];
 
 export const products: Product[] = [
+  // Combos
+  {
+    id: 100,
+    name: "Combo Família",
+    description: "Pizza família + Pizza média doce + Refrigerante",
+    price: 74.90,
+    image: "/placeholder.svg",
+    category: "combo",
+  },
+  {
+    id: 101,
+    name: "Combo Big",
+    description: "2 Pizzas grandes + Pizza média",
+    price: 102.90,
+    image: "/placeholder.svg",
+    category: "combo",
+  },
+  {
+    id: 102,
+    name: "Rodízio em Casa",
+    description: "Escolha 7 sabores e faça seu rodízio",
+    price: 194.90,
+    image: "/placeholder.svg",
+    category: "combo",
+  },
+  
+  // Bebidas
   {
     id: 7,
     name: "Coca-Cola 2L",
@@ -64,6 +97,8 @@ export const products: Product[] = [
     image: "/agua.jpg",
     category: "bebida",
   },
+  
+  // Sobremesas
   {
     id: 11,
     name: "Petit Gateau",

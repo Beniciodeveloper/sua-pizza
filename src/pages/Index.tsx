@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
-import Cart from "../components/Cart";
 import { categories, products } from "../data/products";
 import ScrollReveal from "../components/ScrollReveal";
 import { useCart } from "../contexts/CartContext";
@@ -10,9 +9,8 @@ import { ShoppingBag } from "lucide-react";
 import PizzaBuilder from "../components/PizzaBuilder";
 
 const Index = () => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>(categories[0].id);
-  const { addToCart, itemCount } = useCart();
+  const { itemCount } = useCart();
 
   const filteredProducts = products.filter(
     (product) => product.category === activeCategory
@@ -35,7 +33,7 @@ const Index = () => {
               </p>
               <button 
                 onClick={() => window.scrollTo({ top: 500, behavior: "smooth" })}
-                className="bg-white text-pizza-primary px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition-all transform hover:scale-105"
+                className="bg-white text-pizza-secondary px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition-all transform hover:scale-105"
               >
                 Montar Pizza
               </button>
@@ -55,7 +53,7 @@ const Index = () => {
                   onClick={() => setActiveCategory(category.id)}
                   className={`px-4 py-2 rounded-full whitespace-nowrap flex items-center transition-all ${
                     activeCategory === category.id
-                      ? "bg-pizza-primary text-white"
+                      ? "bg-pizza-secondary text-white"
                       : "bg-gray-100 hover:bg-gray-200"
                   }`}
                 >
@@ -86,7 +84,6 @@ const Index = () => {
                   <ProductCard
                     key={product.id}
                     product={product}
-                    onAddToCart={addToCart}
                     index={index}
                   />
                 ))}
@@ -101,30 +98,6 @@ const Index = () => {
           )}
         </div>
       </section>
-
-      {/* Floating cart button (mobile only) */}
-      <button
-        onClick={() => setIsCartOpen(true)}
-        className="fixed bottom-6 right-6 z-30 md:hidden bg-pizza-primary text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center"
-      >
-        <ShoppingBag className="h-6 w-6" />
-        {itemCount > 0 && (
-          <span className="absolute -top-2 -right-2 bg-white text-pizza-primary text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center border-2 border-pizza-primary">
-            {itemCount}
-          </span>
-        )}
-      </button>
-
-      {/* Cart sidebar */}
-      <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-      
-      {/* Backdrop for cart */}
-      {isCartOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40"
-          onClick={() => setIsCartOpen(false)}
-        />
-      )}
       
       {/* Footer */}
       <footer className="bg-pizza-dark text-white py-8 px-4">
@@ -132,7 +105,7 @@ const Index = () => {
           <div className="text-center">
             <h3 className="text-xl font-bold mb-2">
               <span className="text-2xl mr-2">🍕</span>
-              <span className="text-pizza-primary">Pizza</span>Express
+              <span className="text-pizza-secondary">Pizza</span>Express
             </h3>
             <p className="opacity-80 mb-4">Pizzas artesanais com ingredientes premium</p>
             <div className="flex justify-center space-x-4">
