@@ -148,12 +148,12 @@ const PizzaBuilder = () => {
             </h3>
 
             <Tabs defaultValue="tradicional" className="w-full">
-              <TabsList className="w-full mb-4 bg-gray-100 flex overflow-x-auto">
-                {flavorCategories.map((category) => (
+              <TabsList className="w-full mb-4 bg-gray-100 flex overflow-x-auto ">
+                {flavorCategories.map((category,index) => (
                   <TabsTrigger
                     key={category.id}
                     value={category.id}
-                    className="flex-shrink-0"
+                    className={`flex-shrink-0 ${index === 0 ? "ml-20" : ""}`}
                   >
                     {category.name}
                   </TabsTrigger>

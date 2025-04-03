@@ -239,7 +239,7 @@ const MultiStepCheckout: React.FC = () => {
                           className="h-full w-full object-cover"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
-                            target.src = "/placeholder.svg";
+                            target.src = "/pizzatamanhos.jpg";
                           }}
                         />
                       </div>
