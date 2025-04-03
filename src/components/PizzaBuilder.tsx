@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { pizzaSizes, pizzaFlavors, flavorCategories, calculatePizzaPrice, PizzaFlavor, PizzaSize } from '../data/pizzaOptions';
 import { useCart } from '../contexts/CartContext';
