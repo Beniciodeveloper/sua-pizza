@@ -44,7 +44,7 @@ export const products: Product[] = [
     name: "Combo Família",
     description: "Pizza família + Pizza média doce + Refrigerante",
     price: 74.90,
-    image: "/placeholder.svg",
+    image: "/combo.jpg",
     category: "combo",
   },
   {
@@ -52,7 +52,7 @@ export const products: Product[] = [
     name: "Combo Big",
     description: "2 Pizzas grandes + Pizza média",
     price: 102.90,
-    image: "/placeholder.svg",
+    image: "/combo.jpg",
     category: "combo",
   },
   {
@@ -60,7 +60,7 @@ export const products: Product[] = [
     name: "Rodízio em Casa",
     description: "Escolha 7 sabores e faça seu rodízio",
     price: 194.90,
-    image: "/placeholder.svg",
+    image: "/combo.jpg",
     category: "combo",
   },
   
@@ -70,7 +70,7 @@ export const products: Product[] = [
     name: "Coca-Cola 2L",
     description: "Refrigerante Coca-Cola garrafa 2 litros",
     price: 12.90,
-    image: "/coca-cola.jpg",
+    image: "/cocacola.webp",
     category: "bebida",
   },
   {
@@ -78,7 +78,7 @@ export const products: Product[] = [
     name: "Guaraná Antarctica 2L",
     description: "Refrigerante Guaraná Antarctica garrafa 2 litros",
     price: 10.90,
-    image: "/guarana.jpg",
+    image: "/atartica2l.webp",
     category: "bebida",
   },
   {
@@ -86,7 +86,7 @@ export const products: Product[] = [
     name: "Suco de Laranja 1L",
     description: "Suco de laranja natural 1 litro",
     price: 14.90,
-    image: "/suco-laranja.jpg",
+    image: "/laranja1l.webp",
     category: "bebida",
   },
   {
@@ -94,7 +94,7 @@ export const products: Product[] = [
     name: "Água Mineral 500ml",
     description: "Água mineral sem gás 500ml",
     price: 4.90,
-    image: "/agua.jpg",
+    image: "/aguamineral500.webp",
     category: "bebida",
   },
   
@@ -104,7 +104,7 @@ export const products: Product[] = [
     name: "Petit Gateau",
     description: "Bolinho de chocolate com interior cremoso, servido com sorvete de creme",
     price: 18.90,
-    image: "/petit-gateau.jpg",
+    image: "/petit.jpg",
     category: "sobremesa",
   },
   {
@@ -112,7 +112,7 @@ export const products: Product[] = [
     name: "Cheesecake",
     description: "Torta de cream cheese com calda de frutas vermelhas",
     price: 16.90,
-    image: "/cheesecake.jpg",
+    image: "/chesskake.avif",
     category: "sobremesa",
   },
   {
@@ -120,7 +120,7 @@ export const products: Product[] = [
     name: "Mousse de Chocolate",
     description: "Mousse de chocolate meio amargo com raspas de chocolate",
     price: 14.90,
-    image: "/mousse-chocolate.jpg",
+    image: "/mussechocolate.jpg",
     category: "sobremesa",
   }
 ];
