@@ -1,11 +1,10 @@
-
 export interface Product {
   id: number;
   name: string;
   description: string;
   price: number;
   image: string;
-  category: 'bebida' | 'sobremesa';
+  category: 'bebida' | 'sobremesa' | 'montar';
 }
 
 export interface Category {

@@ -92,7 +92,7 @@ const PizzaBuilder = () => {
       description: `${customPizza.flavors.length} sabor(es): ${flavorNames}. ${customPizza.size.slices} fatias.`,
       price: customPizza.price,
       image: customPizza.flavors[0]?.image || '/placeholder.svg',
-      category: 'montar',
+      category: 'montar' as const,
     };
 
     addToCart(customPizzaProduct);
