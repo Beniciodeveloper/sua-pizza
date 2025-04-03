@@ -17,7 +17,7 @@ export const pizzaSizes: PizzaSize[] = [
     diameter: "30cm",
     slices: 8,
     maxFlavors: 2,
-    image: "/pizza-small.jpg",
+    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop&q=80",
     basePrice: 34.90
   },
   {
@@ -26,7 +26,7 @@ export const pizzaSizes: PizzaSize[] = [
     diameter: "35cm",
     slices: 10,
     maxFlavors: 3,
-    image: "/pizza-medium.jpg",
+    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=500&h=500&fit=crop&q=80",
     basePrice: 39.90
   },
   {
@@ -35,7 +35,7 @@ export const pizzaSizes: PizzaSize[] = [
     diameter: "40cm",
     slices: 12,
     maxFlavors: 4,
-    image: "/pizza-large.jpg",
+    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=600&h=600&fit=crop&q=80",
     basePrice: 44.90
   }
 ];
