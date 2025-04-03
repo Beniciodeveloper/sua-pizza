@@ -56,7 +56,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
             <div className="space-y-4">
               {cart.map((item) => (
                 <CartItem
-                  key={item.id}
+                  key={`${item.id}${item.customPizzaSize || ''}`}
                   item={item}
                   onRemove={removeFromCart}
                   onIncrease={increaseQuantity}

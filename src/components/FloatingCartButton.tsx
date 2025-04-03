@@ -3,10 +3,9 @@ import React from 'react';
 import { ShoppingBag } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { Link } from 'react-router-dom';
-import { formatCurrency } from '../utils/formatCurrency';
 
 const FloatingCartButton = () => {
-  const { itemCount, total } = useCart();
+  const { itemCount } = useCart();
 
   // Don't show the button if the cart is empty
   if (itemCount === 0) return null;
@@ -14,13 +13,13 @@ const FloatingCartButton = () => {
   return (
     <Link
       to="/checkout"
-      className="fixed bottom-6 right-6 z-50 bg-pizza-primary text-white rounded-full shadow-lg flex items-center py-2 px-4 hover:bg-pizza-secondary transition-colors"
+      className="fixed bottom-6 right-6 z-50 bg-pizza-primary text-white rounded-full shadow-lg flex items-center justify-center p-3 hover:bg-pizza-secondary transition-colors"
+      aria-label="View cart"
     >
-      <ShoppingBag className="mr-2" />
-      <div>
-        <span className="font-bold">{itemCount} {itemCount === 1 ? 'item' : 'itens'}</span>
-        <p className="text-sm">{formatCurrency(total)}</p>
-      </div>
+      <ShoppingBag className="h-6 w-6" />
+      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
+        {itemCount}
+      </span>
     </Link>
   );
 };

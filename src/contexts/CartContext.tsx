@@ -5,11 +5,12 @@ import { toast } from 'sonner';
 
 export interface CartProduct extends Product {
   quantity: number;
+  customPizzaSize?: 'small' | 'medium' | 'large'; // Added to track custom pizza sizes
 }
 
 interface CartContextType {
   cart: CartProduct[];
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, customPizzaSize?: 'small' | 'medium' | 'large') => void;
   removeFromCart: (id: number) => void;
   increaseQuantity: (id: number) => void;
   decreaseQuantity: (id: number) => void;
@@ -35,20 +36,25 @@ interface CartProviderProps {
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cart, setCart] = useState<CartProduct[]>([]);
 
-  const addToCart = (product: Product) => {
+  const addToCart = (product: Product, customPizzaSize?: 'small' | 'medium' | 'large') => {
     setCart((prevCart) => {
-      const existingProduct = prevCart.find((item) => item.id === product.id);
+      const existingProductIndex = prevCart.findIndex(
+        (item) => item.id === product.id && item.customPizzaSize === customPizzaSize
+      );
       
-      if (existingProduct) {
+      if (existingProductIndex !== -1) {
+        // If the product already exists, increase the quantity
+        const updatedCart = [...prevCart];
+        updatedCart[existingProductIndex] = {
+          ...updatedCart[existingProductIndex],
+          quantity: updatedCart[existingProductIndex].quantity + 1
+        };
         toast.success(`Quantidade de ${product.name} aumentada`);
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
+        return updatedCart;
       } else {
+        // Add new product to the cart
         toast.success(`${product.name} adicionado ao carrinho`);
-        return [...prevCart, { ...product, quantity: 1 }];
+        return [...prevCart, { ...product, quantity: 1, customPizzaSize }];
       }
     });
   };

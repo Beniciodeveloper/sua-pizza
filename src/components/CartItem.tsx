@@ -12,11 +12,14 @@ interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ item, onRemove, onIncrease, onDecrease }) => {
+  // Determine which image to show
+  const imageSrc = item.customPizzaSize ? `/pizza-${item.customPizzaSize}.jpg` : item.image;
+
   return (
     <div className="flex items-center py-4 border-b border-gray-200 animate-fade-in">
       <div className="h-16 w-16 flex-shrink-0 rounded-md overflow-hidden">
         <img
-          src={item.image}
+          src={imageSrc}
           alt={item.name}
           className="h-full w-full object-cover"
           onError={(e) => {

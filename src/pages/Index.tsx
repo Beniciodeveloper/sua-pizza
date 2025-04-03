@@ -8,6 +8,13 @@ import { useCart } from "../contexts/CartContext";
 import { ShoppingBag } from "lucide-react";
 import PizzaBuilder from "../components/PizzaBuilder";
 import FloatingCartButton from "../components/FloatingCartButton";
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../components/ui/carousel";
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<string>(categories[0].id);
@@ -80,16 +87,33 @@ const Index = () => {
                 </h2>
               </ScrollReveal>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredProducts.map((product, index) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    index={index}
-                    onAddToCart={addToCart}
-                  />
-                ))}
-              </div>
+              {filteredProducts.length > 0 && (
+                <div className="relative px-4 md:px-8 lg:px-12">
+                  <Carousel
+                    opts={{
+                      align: "start",
+                      loop: filteredProducts.length > 3,
+                    }}
+                    className="w-full"
+                  >
+                    <CarouselContent className="-ml-2 md:-ml-4">
+                      {filteredProducts.map((product, index) => (
+                        <CarouselItem key={product.id} className="pl-2 md:pl-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                          <ProductCard
+                            product={product}
+                            index={index}
+                            onAddToCart={addToCart}
+                          />
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <div className="hidden md:block">
+                      <CarouselPrevious className="-left-12" />
+                      <CarouselNext className="-right-12" />
+                    </div>
+                  </Carousel>
+                </div>
+              )}
               
               {filteredProducts.length === 0 && (
                 <div className="text-center py-12">
