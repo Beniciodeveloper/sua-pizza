@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -98,4 +92,71 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Estilos para o ScrollReveal */
+.reveal {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0.6s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Estilos para cartões de produtos */
+.pizza-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pizza-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Estilos para o carrinho */
+.cart-item-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.cart-item-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.cart-item-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.cart-item-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Efeitos de gradiente */
+.pizza-gradient {
+  background: linear-gradient(135deg, #D32F2F 0%, #E64A19 100%);
+}
+
+.pizza-gradient-light {
+  background: linear-gradient(135deg, #FFECB3 0%, #FFA000 100%);
+}
+
+/* Estilos para o botão do WhatsApp */
+.whatsapp-button {
+  background-color: #25D366;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #128C7E;
+  transform: translateY(-2px);
 }
