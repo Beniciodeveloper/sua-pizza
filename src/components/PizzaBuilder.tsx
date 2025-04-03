@@ -1,20 +1,16 @@
+
 import React, { useState, useEffect } from 'react';
-import { pizzaSizes, pizzaFlavors, flavorCategories, calculatePizzaPrice, PizzaFlavor, PizzaSize } from '../data/pizzaOptions';
+import { pizzaSizes, pizzaFlavors, flavorCategories } from '../data/pizzaOptions';
 import { useCart } from '../contexts/CartContext';
 import { toast } from 'sonner';
 import { Check, Info, PlusCircle } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import { formatCurrency } from '../utils/formatCurrency';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-
-interface CustomPizza {
-  size: PizzaSize | null;
-  flavors: PizzaFlavor[];
-  price: number;
-}
+import { calculatePizzaPrice } from '../utils/pizzaPriceCalculator';
 
 const PizzaBuilder = () => {
-  const [customPizza, setCustomPizza] = useState<CustomPizza>({
+  const [customPizza, setCustomPizza] = useState({
     size: null,
     flavors: [],
     price: 0,
@@ -22,7 +18,7 @@ const PizzaBuilder = () => {
 
   const { addToCart } = useCart();
 
-  const handleSelectSize = (size: PizzaSize) => {
+  const handleSelectSize = (size) => {
     setCustomPizza({
       size: size,
       flavors: [],
@@ -30,18 +26,22 @@ const PizzaBuilder = () => {
     });
   };
 
-  const calculateHighestPrice = (size: string, flavors: PizzaFlavor[]): number => {
-    if (flavors.length === 0) return 0;
-    
-    // Find the flavor with the highest price
-    const highestPriceFlavor = flavors.reduce((prev, current) => 
-      (current.priceMultiplier > prev.priceMultiplier) ? current : prev
-    );
-    
-    return highestPriceFlavor.priceMultiplier * (customPizza.size?.basePrice || 0);
-  };
+  useEffect(() => {
+    // Atualiza o preço quando houver mudança nos sabores ou tamanho
+    if (customPizza.size && customPizza.flavors.length > 0) {
+      const newPrice = calculatePizzaPrice(
+        customPizza.size.id, 
+        customPizza.flavors
+      );
+      
+      setCustomPizza(prev => ({
+        ...prev,
+        price: newPrice
+      }));
+    }
+  }, [customPizza.size, customPizza.flavors]);
 
-  const handleAddFlavor = (flavor: PizzaFlavor) => {
+  const handleAddFlavor = (flavor) => {
     if (!customPizza.size) {
       toast.error("Por favor, escolha um tamanho primeiro");
       return;
@@ -58,34 +58,21 @@ const PizzaBuilder = () => {
     }
 
     const updatedFlavors = [...customPizza.flavors, flavor];
-    const newPrice = calculateHighestPrice(
-      customPizza.size.id,
-      updatedFlavors
-    );
-
+    
     setCustomPizza({
       ...customPizza,
       flavors: updatedFlavors,
-      price: newPrice,
     });
   };
 
-  const handleRemoveFlavor = (flavorId: number) => {
+  const handleRemoveFlavor = (flavorId) => {
     const updatedFlavors = customPizza.flavors.filter(
       (flavor) => flavor.id !== flavorId
     );
     
-    if (!customPizza.size) return;
-
-    const newPrice = calculateHighestPrice(
-      customPizza.size.id,
-      updatedFlavors
-    );
-
     setCustomPizza({
       ...customPizza,
       flavors: updatedFlavors,
-      price: newPrice,
     });
   };
 
@@ -105,7 +92,7 @@ const PizzaBuilder = () => {
       category: 'montar' as const,
     };
 
-    addToCart(customPizzaProduct, customPizza.size.id as 'small' | 'medium' | 'large');
+    addToCart(customPizzaProduct, customPizza.size.id);
     toast.success("Pizza adicionada ao carrinho");
     
     // Reset pizza builder
@@ -146,6 +133,7 @@ const PizzaBuilder = () => {
                 </div>
                 <p className="text-gray-600 text-sm">{size.diameter} - {size.slices} fatias</p>
                 <p className="text-gray-600 text-sm">Até {size.maxFlavors} sabores</p>
+                <p className="text-gray-600 text-sm mt-1">A partir de {formatCurrency(size.basePrice)}</p>
               </button>
             ))}
           </div>
@@ -265,7 +253,9 @@ const PizzaBuilder = () => {
                 </p>
                 <div className="text-xs flex items-center text-gray-500 mt-1">
                   <Info className="h-3 w-3 mr-1" />
-                  O preço é baseado no sabor mais caro selecionado
+                  {customPizza.flavors.length > 1 
+                    ? "Para pizzas com múltiplos sabores, usamos a tabela de preços especial" 
+                    : "O preço é baseado no sabor selecionado"}
                 </div>
               </div>
             )}
