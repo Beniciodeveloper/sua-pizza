@@ -10,7 +10,7 @@ import PizzaBuilder from "../components/PizzaBuilder";
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<string>(categories[0].id);
-  const { itemCount } = useCart();
+  const { itemCount, addToCart } = useCart();
 
   const filteredProducts = products.filter(
     (product) => product.category === activeCategory
@@ -85,6 +85,7 @@ const Index = () => {
                     key={product.id}
                     product={product}
                     index={index}
+                    onAddToCart={addToCart}
                   />
                 ))}
               </div>
